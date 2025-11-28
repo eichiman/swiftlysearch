@@ -1,0 +1,853 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jtlshopplugin>
+    <Name>SwiftlySearch</Name>
+    <Description>Deine schnelle Suchemaschine</Description>
+    <Author>Swiftly</Author>
+    <URL>https://www.swiftlysearch.de</URL>
+    <XMLVersion>102</XMLVersion>
+    <ShopVersion>500</ShopVersion>
+    <PluginID>swiftlysearch</PluginID>
+    <Version>1.3.39</Version>
+    <CreateDate>2025-11-21</CreateDate>
+    <Install>
+        <Adminmenu>
+            <Customlink sort="0">
+                <Name>Infos</Name>
+            </Customlink>
+        </Adminmenu>
+		<Hooks>
+			<Hook id="131">131_bms_GLOBALINCLUDE_INC.php</Hook>
+			<Hook id="138">138_bms_BILDER_XML_BEARBEITE.php</Hook>
+            <Hook id="151">151_bms_ARTIKEL_XML_BEARBEITEINSERT.php</Hook>
+			<Hook id="152">152_bms_ARTIKEL_XML_BEARBEITEDELETES.php</Hook>
+			<Hook id="171">171_bms_HERSTELLER_XML_BEARBEITEDELETES.php</Hook>
+			<Hook id="172">172_bms_KATEGORIE_XML_BEARBEITEDELETES.php</Hook>
+			<Hook id="173">173_bms_HERSTELLER_XML_BEARBEITEINSERT.php</Hook>
+			<Hook id="174">174_bms_KATEGORIE_XML_BEARBEITEINSERT.php</Hook>
+			<Hook id="225">225_bms_QUICKSYNC_XML_BEARBEITEINSERT.php</Hook>
+        </Hooks>
+
+		<Locales>
+			<Variable>
+				<Name>input_placeholder</Name>
+				<VariableLocalized iso="GER">Ich suche nach... </VariableLocalized>
+				<VariableLocalized iso="ENG">I am searching for... </VariableLocalized>
+				<VariableLocalized iso="DUT">Ik ben op zoek naar... </VariableLocalized>
+				<VariableLocalized iso="FRE">Je cherche... </VariableLocalized>
+				<VariableLocalized iso="ITA">Sto cercando... </VariableLocalized>
+				<VariableLocalized iso="SWE">Jag letar efter...</VariableLocalized>
+				<VariableLocalized iso="RUS">Я ищу... </VariableLocalized>
+				<VariableLocalized iso="POL">Szukam... </VariableLocalized>
+				<VariableLocalized iso="SPA">Estoy buscando... </VariableLocalized>
+				<Description>Platzhalter im Eingabefeld der Suche</Description>
+			</Variable>
+		
+			<Variable>
+				<Name>header_search_for</Name>
+				<VariableLocalized iso="GER">suche </VariableLocalized>
+				<VariableLocalized iso="ENG">search </VariableLocalized>
+				<VariableLocalized iso="DUT">zoek </VariableLocalized>
+				<VariableLocalized iso="FRE">cherche </VariableLocalized>
+				<VariableLocalized iso="ITA">ricerca </VariableLocalized>
+				<VariableLocalized iso="SWE">sökning </VariableLocalized>
+				<VariableLocalized iso="RUS">поиск </VariableLocalized>
+				<VariableLocalized iso="POL">szukaj </VariableLocalized>
+				<VariableLocalized iso="SPA">buscar </VariableLocalized>
+				<Description>Text vor dem aktuellen Suchbegriff im Header</Description>
+			</Variable>
+		
+			<Variable>
+				<Name>filter_search_for</Name>
+				<VariableLocalized iso="GER">suche</VariableLocalized>
+				<VariableLocalized iso="ENG">search</VariableLocalized>
+				<VariableLocalized iso="DUT">zoek</VariableLocalized>
+				<VariableLocalized iso="FRE">cherche</VariableLocalized>
+				<VariableLocalized iso="ITA">ricerca</VariableLocalized>
+				<VariableLocalized iso="SWE">sökning</VariableLocalized>
+				<VariableLocalized iso="RUS">поиск</VariableLocalized>
+				<VariableLocalized iso="POL">szukaj</VariableLocalized>
+				<VariableLocalized iso="SPA">buscar</VariableLocalized>
+				<Description>Text vor dem aktuellen Suchbegriff im Header des Filters</Description>
+			</Variable>
+		
+			<Variable>
+				<Name>filter_count_hits</Name>
+				<VariableLocalized iso="GER">Treffer</VariableLocalized>
+				<VariableLocalized iso="ENG">hits</VariableLocalized>
+				<VariableLocalized iso="DUT">Hits</VariableLocalized>
+				<VariableLocalized iso="FRE">Résultats</VariableLocalized>
+				<VariableLocalized iso="ITA">colpi</VariableLocalized>
+				<VariableLocalized iso="SWE">Träffar</VariableLocalized>
+				<VariableLocalized iso="RUS">результаты</VariableLocalized>
+				<VariableLocalized iso="POL">trafienia</VariableLocalized>
+				<VariableLocalized iso="SPA">resultados</VariableLocalized>
+				<Description>Text nach der Trefferanzahl im Header des Filters</Description>
+			</Variable>
+
+			<Variable>
+				<Name>filter_header</Name>
+				<VariableLocalized iso="GER">Filter &amp; Einstellungen</VariableLocalized>
+				<VariableLocalized iso="ENG">filter &amp; settings</VariableLocalized>
+				<VariableLocalized iso="DUT">Filter &amp; Instellingen</VariableLocalized>
+				<VariableLocalized iso="FRE">Filtre &amp; Paramètres</VariableLocalized>
+				<VariableLocalized iso="ITA">Filtro &amp; impostazioni</VariableLocalized>
+				<VariableLocalized iso="SWE">Filter &amp; inställningar</VariableLocalized>
+				<VariableLocalized iso="RUS">Фильтр &amp; настройки</VariableLocalized>
+				<VariableLocalized iso="POL">Filtr &amp; ustawienia</VariableLocalized>
+				<VariableLocalized iso="SPA">Filtro &amp; ajustes</VariableLocalized>
+				<Description>Titel des Buttons, um die Filter zu öffnen</Description>
+			</Variable>
+
+			<Variable>
+				<Name>active_filter_sonderpreis</Name>
+				<VariableLocalized iso="GER">Sonderpreis</VariableLocalized>
+				<VariableLocalized iso="ENG">special price</VariableLocalized>
+				<VariableLocalized iso="DUT">Speciale prijs</VariableLocalized>
+				<VariableLocalized iso="FRE">Prix spécial</VariableLocalized>
+				<VariableLocalized iso="ITA">Prezzo speciale</VariableLocalized>
+				<VariableLocalized iso="SWE">Specialpris</VariableLocalized>
+				<VariableLocalized iso="RUS">Специальная цена</VariableLocalized>
+				<VariableLocalized iso="POL">Cena specjalna</VariableLocalized>
+				<VariableLocalized iso="SPA">Precio especial</VariableLocalized>
+				<Description>button um den Filter Sonderpreis zu deaktivieren</Description>
+			</Variable>
+		
+			<Variable>
+				<Name>active_filter_bestseller</Name>
+				<VariableLocalized iso="GER">Bestseller</VariableLocalized>
+				<VariableLocalized iso="ENG">bestseller</VariableLocalized>
+				<VariableLocalized iso="DUT">Bestseller</VariableLocalized>
+				<VariableLocalized iso="FRE">Meilleures ventes</VariableLocalized>
+				<VariableLocalized iso="ITA">Bestseller</VariableLocalized>
+				<VariableLocalized iso="SWE">Bästsäljare</VariableLocalized>
+				<VariableLocalized iso="RUS">Бестселлеры</VariableLocalized>
+				<VariableLocalized iso="POL">Bestseller</VariableLocalized>
+				<VariableLocalized iso="SPA">Más vendidos</VariableLocalized>
+				<Description>button um den Filter Bestseller zu deaktivieren</Description>
+			</Variable>
+		
+			<Variable>
+				<Name>active_filter_topartikel</Name>
+				<VariableLocalized iso="GER">Topartikel</VariableLocalized>
+				<VariableLocalized iso="ENG">top offer price</VariableLocalized>
+				<VariableLocalized iso="DUT">Top artikelen</VariableLocalized>
+				<VariableLocalized iso="FRE">Top articles</VariableLocalized>
+				<VariableLocalized iso="ITA">Articolo di punta</VariableLocalized>
+				<VariableLocalized iso="SWE">bästa erbjudande pris</VariableLocalized>
+				<VariableLocalized iso="RUS">Топ article</VariableLocalized>
+				<VariableLocalized iso="POL">Top artykuły</VariableLocalized>
+				<VariableLocalized iso="SPA">Artículos principales</VariableLocalized>
+				<Description>button um den Filter Topartikel zu deaktivieren</Description>
+			</Variable>
+		
+			<Variable>
+				<Name>active_filter_stock</Name>
+				<VariableLocalized iso="GER">lagernd</VariableLocalized>
+				<VariableLocalized iso="ENG">in stock</VariableLocalized>
+				<VariableLocalized iso="DUT">op voorraad</VariableLocalized>
+				<VariableLocalized iso="FRE">en stock</VariableLocalized>
+				<VariableLocalized iso="ITA">disponibile</VariableLocalized>
+				<VariableLocalized iso="SWE">i lager</VariableLocalized>
+				<VariableLocalized iso="RUS">в наличии</VariableLocalized>
+				<VariableLocalized iso="POL">na stanie</VariableLocalized>
+				<VariableLocalized iso="SPA">en stock</VariableLocalized>
+				<Description>button um den Filter Lager zu deaktivieren</Description>
+			</Variable>
+
+			<Variable>
+				<Name>filter_sort_by_rel</Name>
+				<VariableLocalized iso="GER">nach Relevanz</VariableLocalized>
+				<VariableLocalized iso="ENG">by ranking</VariableLocalized>
+				<VariableLocalized iso="DUT">volgens relevantie</VariableLocalized>
+				<VariableLocalized iso="FRE">par pertinence</VariableLocalized>
+				<VariableLocalized iso="ITA">per rilevanza</VariableLocalized>
+				<VariableLocalized iso="SWE">efter relevans</VariableLocalized>
+				<VariableLocalized iso="RUS">по релевантности</VariableLocalized>
+				<VariableLocalized iso="POL">według trafności</VariableLocalized>
+				<VariableLocalized iso="SPA">por relevancia</VariableLocalized>
+				<Description>SelectOption für die Relevanz</Description>
+			</Variable>
+			<Variable>
+				<Name>filter_before_count_hits</Name>
+				<VariableLocalized iso="GER">Treffer: </VariableLocalized>
+				<VariableLocalized iso="ENG">hits: </VariableLocalized>
+				<VariableLocalized iso="DUT">Hits: </VariableLocalized>
+				<VariableLocalized iso="FRE">Résultats: </VariableLocalized>
+				<VariableLocalized iso="ITA">risultati: </VariableLocalized>
+				<VariableLocalized iso="SWE">träffar: </VariableLocalized>
+				<VariableLocalized iso="RUS">результатов: </VariableLocalized>
+				<VariableLocalized iso="POL">trafienia: </VariableLocalized>
+				<VariableLocalized iso="SPA">resultados: </VariableLocalized>
+				<Description>vor der Trefferanzahl</Description>
+			</Variable>
+			<Variable>
+				<Name>filter_sort_by_price_up</Name>
+				<VariableLocalized iso="GER">Preis aufsteigend (0&gt;9)</VariableLocalized>
+				<VariableLocalized iso="ENG">price upwards (0&gt;9)</VariableLocalized>
+				<VariableLocalized iso="DUT">Prijst oplopend (0&gt;9)</VariableLocalized>
+				<VariableLocalized iso="FRE">Prix croissant (0&gt;9)</VariableLocalized>
+				<VariableLocalized iso="ITA">Prezzo ascendente (0&gt;9)</VariableLocalized>
+				<VariableLocalized iso="SWE">Pris stigande (0&gt;9)</VariableLocalized>
+				<VariableLocalized iso="RUS">цена по возрастанию (0&gt;9)</VariableLocalized>
+				<VariableLocalized iso="POL">cena rosnąco (0&gt;9)</VariableLocalized>
+				<VariableLocalized iso="SPA">precio ascendente (0&gt;9)</VariableLocalized>
+				<Description>SelectOption für Preis aufsteigend</Description>
+			</Variable>
+			<Variable>
+				<Name>filter_sort_by_price_down</Name>
+				<VariableLocalized iso="GER">Preis absteigend (9&gt;0)</VariableLocalized>
+				<VariableLocalized iso="ENG">price downwards (9&gt;0)</VariableLocalized>
+				<VariableLocalized iso="DUT">prijst aflopend (9&gt;0)</VariableLocalized>
+				<VariableLocalized iso="FRE">prix descendant (9&gt;0)</VariableLocalized>
+				<VariableLocalized iso="ITA">prezzo discendente (9&gt;0)</VariableLocalized>
+				<VariableLocalized iso="SWE">pris fallande (9&gt;0)</VariableLocalized>
+				<VariableLocalized iso="RUS">цена по убыванию (9&gt;0)</VariableLocalized>
+				<VariableLocalized iso="POL">cena malejąco (9&gt;0)</VariableLocalized>
+				<VariableLocalized iso="SPA">precio descendente (9&gt;0)</VariableLocalized>
+				<Description>SelectOption für Preis absteigend</Description>
+			</Variable>
+			<Variable>
+				<Name>filter_sort_by_az_up</Name>
+				<VariableLocalized iso="GER">nach Alphabet (A&gt;Z)</VariableLocalized>
+				<VariableLocalized iso="ENG">alphabet (A&gt;Z)</VariableLocalized>
+				<VariableLocalized iso="DUT">op alfabet (A&gt;Z)</VariableLocalized>
+				<VariableLocalized iso="FRE">ordre alphabétique (A&gt;Z)</VariableLocalized>
+				<VariableLocalized iso="ITA">alfabetico (A&gt;Z)</VariableLocalized>
+				<VariableLocalized iso="SWE">alfabetiskt (A&gt;Z)</VariableLocalized>
+				<VariableLocalized iso="RUS">по алфавиту (А&gt;Я)</VariableLocalized>
+				<VariableLocalized iso="POL">alfabetycznie (A&gt;Z)</VariableLocalized>
+				<VariableLocalized iso="SPA">alfabeto (A&gt;Z)</VariableLocalized>
+				<Description>SelectOption nach Alphabet (A&gt;Z)</Description>
+			</Variable>
+			<Variable>
+				<Name>filter_sort_by_az_down</Name>
+				<VariableLocalized iso="GER">nach Alphabet (Z&gt;A)</VariableLocalized>
+				<VariableLocalized iso="ENG">alphabet (Z&gt;A)</VariableLocalized>
+				<VariableLocalized iso="DUT">op alfabet (Z&gt;A)</VariableLocalized>
+				<VariableLocalized iso="FRE">ordre alphabétique (Z&gt;A)</VariableLocalized>
+				<VariableLocalized iso="ITA">alfabetico (Z&gt;A)</VariableLocalized>
+				<VariableLocalized iso="SWE">alfabetiskt (Z&gt;A)</VariableLocalized>
+				<VariableLocalized iso="RUS">по алфавиту (Я&gt;А)</VariableLocalized>
+				<VariableLocalized iso="POL">alfabetycznie (Z&gt;A)</VariableLocalized>
+				<VariableLocalized iso="SPA">alfabeto (Z&gt;A)</VariableLocalized>
+				<Description>SelectOption nach Alphabet (Z&gt;A)</Description>
+			</Variable>
+
+
+			<Variable>
+				<Name>filter_price_header</Name>
+				<VariableLocalized iso="GER">Preisfilter</VariableLocalized>
+				<VariableLocalized iso="ENG">filter by price</VariableLocalized>
+				<VariableLocalized iso="DUT">Prijsfilter</VariableLocalized>
+				<VariableLocalized iso="FRE">Filtre de prix</VariableLocalized>
+				<VariableLocalized iso="ITA">filtro per prezzo</VariableLocalized>
+				<VariableLocalized iso="SWE">filtrera efter pris</VariableLocalized>
+				<VariableLocalized iso="RUS">фильтр по цене</VariableLocalized>
+				<VariableLocalized iso="POL">filtr cenowy</VariableLocalized>
+				<VariableLocalized iso="SPA">filtro por precio</VariableLocalized>
+				<Description>Preisfilter Überschrift</Description>
+			</Variable>
+
+			<Variable>
+				<Name>filter_price_placeholder_min</Name>
+				<VariableLocalized iso="GER">min. Preis</VariableLocalized>
+				<VariableLocalized iso="ENG">min. price</VariableLocalized>
+				<VariableLocalized iso="DUT">min. Prijs</VariableLocalized>
+				<VariableLocalized iso="FRE">min. Prix</VariableLocalized>
+				<VariableLocalized iso="ITA">prezzo min.</VariableLocalized>
+				<VariableLocalized iso="SWE">minsta pris</VariableLocalized>
+				<VariableLocalized iso="RUS">минимальная цена</VariableLocalized>
+				<VariableLocalized iso="POL">min. cena</VariableLocalized>
+				<VariableLocalized iso="SPA">precio mín.</VariableLocalized>
+				<Description>Preisfilter, placeholder für mindest Preis</Description>
+			</Variable>
+
+
+			<Variable>
+				<Name>filter_price_placeholder_max</Name>
+				<VariableLocalized iso="GER">max. Preis</VariableLocalized>
+				<VariableLocalized iso="ENG">max. price</VariableLocalized>
+				<VariableLocalized iso="DUT">max. Prijs</VariableLocalized>
+				<VariableLocalized iso="FRE">max. Prix</VariableLocalized>
+				<VariableLocalized iso="ITA">prezzo max.</VariableLocalized>
+				<VariableLocalized iso="SWE">maximalt pris</VariableLocalized>
+				<VariableLocalized iso="RUS">максимальная цена</VariableLocalized>
+				<VariableLocalized iso="POL">max. cena</VariableLocalized>
+				<VariableLocalized iso="SPA">precio máx.</VariableLocalized>
+				<Description>Preisfilter, placeholder für maximum Preis</Description>
+			</Variable>
+
+			<Variable>
+				<Name>filter_manufacturer_title</Name>
+				<VariableLocalized iso="GER">Herstellerfilter</VariableLocalized>
+				<VariableLocalized iso="ENG">filter by manufacturer</VariableLocalized>
+				<VariableLocalized iso="DUT">Filter fabrikant</VariableLocalized>
+				<VariableLocalized iso="FRE">Filtre du fabricant</VariableLocalized>
+				<VariableLocalized iso="ITA">filtro per produttore</VariableLocalized>
+				<VariableLocalized iso="SWE">filtrera efter tillverkare</VariableLocalized>
+				<VariableLocalized iso="RUS">фильтр по производителю</VariableLocalized>
+				<VariableLocalized iso="POL">filtr producenta</VariableLocalized>
+				<VariableLocalized iso="SPA">filtro por fabricante</VariableLocalized>
+				<Description>Herstellerfilter Überschrift</Description>
+			</Variable>
+
+			<Variable>
+				<Name>filter_manufacturer_select_title</Name>
+				<VariableLocalized iso="GER">Hersteller</VariableLocalized>
+				<VariableLocalized iso="ENG">manufacturer</VariableLocalized>
+				<VariableLocalized iso="DUT">Fabrikant</VariableLocalized>
+				<VariableLocalized iso="FRE">Fabricant</VariableLocalized>
+				<VariableLocalized iso="ITA">produttore</VariableLocalized>
+				<VariableLocalized iso="SWE">tillverkare</VariableLocalized>
+				<VariableLocalized iso="RUS">производитель</VariableLocalized>
+				<VariableLocalized iso="POL">producent</VariableLocalized>
+				<VariableLocalized iso="SPA">fabricante</VariableLocalized>
+				<Description>Herstellerfilter Titel im Select, wenn leer</Description>
+			</Variable>
+
+			<Variable>
+				<Name>filter_warengruppe_select_title</Name>
+				<VariableLocalized iso="GER">Warengruppe</VariableLocalized>
+				<VariableLocalized iso="ENG">Product group</VariableLocalized>
+				<VariableLocalized iso="DUT">Productgroep</VariableLocalized>
+				<VariableLocalized iso="FRE">Gamme de produits</VariableLocalized>
+				<VariableLocalized iso="ITA">Gruppo di prodotti</VariableLocalized>
+				<VariableLocalized iso="SWE">Produktgrupp</VariableLocalized>
+				<VariableLocalized iso="RUS">Группа товаров</VariableLocalized>
+				<VariableLocalized iso="POL">Grupa towarów</VariableLocalized>
+				<VariableLocalized iso="SPA">Grupo de productos</VariableLocalized>
+				<Description>Warengruppenfilter Titel im Select, wenn leer</Description>
+			</Variable>
+
+			<Variable>
+				<Name>filter_category_title</Name>
+				<VariableLocalized iso="GER">Kategoriefilter</VariableLocalized>
+				<VariableLocalized iso="ENG">filter by category</VariableLocalized>
+				<VariableLocalized iso="DUT">Categorie filter</VariableLocalized>
+				<VariableLocalized iso="FRE">Filtre de catégorie</VariableLocalized>
+				<VariableLocalized iso="ITA">filtro per categoria</VariableLocalized>
+				<VariableLocalized iso="SWE">filtrera efter kategori</VariableLocalized>
+				<VariableLocalized iso="RUS">фильтр по категории</VariableLocalized>
+				<VariableLocalized iso="POL">filtr kategorii</VariableLocalized>
+				<VariableLocalized iso="SPA">filtro por categoría</VariableLocalized>
+				<Description>Kategoriefilter Überschrift</Description>
+			</Variable>
+
+			<Variable>
+				<Name>filter_special_title</Name>
+				<VariableLocalized iso="GER">Filter</VariableLocalized>
+				<VariableLocalized iso="ENG">filter</VariableLocalized>
+				<VariableLocalized iso="DUT">Filters</VariableLocalized>
+				<VariableLocalized iso="FRE">Filtre</VariableLocalized>
+				<VariableLocalized iso="ITA">filtro</VariableLocalized>
+				<VariableLocalized iso="SWE">filter</VariableLocalized>
+				<VariableLocalized iso="RUS">фильтр</VariableLocalized>
+				<VariableLocalized iso="POL">filtr</VariableLocalized>
+				<VariableLocalized iso="SPA">filtro</VariableLocalized>
+				<Description>Spezialfilter Überschrift</Description>
+			</Variable>
+
+			<Variable>
+				<Name>filter_special_stock_btn</Name>
+				<VariableLocalized iso="GER">nur Lagerartikel zeigen</VariableLocalized>
+				<VariableLocalized iso="ENG">show only in stock</VariableLocalized>
+				<VariableLocalized iso="DUT">alleen voorraadartikelen weergeven</VariableLocalized>
+				<VariableLocalized iso="FRE">seulement les articles en stock</VariableLocalized>
+				<VariableLocalized iso="ITA">mostra solo articoli in magazzino</VariableLocalized>
+				<VariableLocalized iso="SWE">visa endast i lager</VariableLocalized>
+				<VariableLocalized iso="RUS">показывать только на складе</VariableLocalized>
+				<VariableLocalized iso="POL">pokaż tylko na stanie</VariableLocalized>
+				<VariableLocalized iso="SPA">mostrar solo en stock</VariableLocalized>
+				<Description>Text auf dem Button für den Lagerfilter</Description>
+			</Variable>
+
+			<Variable>
+				<Name>filter_special_topartikel_btn</Name>
+				<VariableLocalized iso="GER">nur Topartikel zeigen</VariableLocalized>
+				<VariableLocalized iso="ENG">show only top offers</VariableLocalized>
+				<VariableLocalized iso="DUT">alleen topartikelen tonen</VariableLocalized>
+				<VariableLocalized iso="FRE">seulement les top articles</VariableLocalized>
+				<VariableLocalized iso="ITA">mostra solo le migliori offerte</VariableLocalized>
+				<VariableLocalized iso="SWE">visa endast topartiklar</VariableLocalized>
+				<VariableLocalized iso="RUS">только лучшие товары</VariableLocalized>
+				<VariableLocalized iso="POL">pokaż tylko najlepsze oferty</VariableLocalized>
+				<VariableLocalized iso="SPA">mostrar solo las mejores ofertas</VariableLocalized>
+				<Description>Text auf dem Button für den Topartikel Filter</Description>
+			</Variable>
+
+			<Variable>
+				<Name>filter_special_bestseller_btn</Name>
+				<VariableLocalized iso="GER">nur Bestseller anzeigen</VariableLocalized>
+				<VariableLocalized iso="ENG">show only bestsellers</VariableLocalized>
+				<VariableLocalized iso="DUT">Toon alleen bestsellers</VariableLocalized>
+				<VariableLocalized iso="FRE">seulement les meilleures ventes</VariableLocalized>
+				<VariableLocalized iso="ITA">mostra solo i più venduti</VariableLocalized>
+				<VariableLocalized iso="SWE">visa endast bästsäljare</VariableLocalized>
+				<VariableLocalized iso="RUS">только лучшие продажи</VariableLocalized>
+				<VariableLocalized iso="POL">pokaż tylko bestsellery</VariableLocalized>
+				<VariableLocalized iso="SPA">mostrar solo los más vendidos</VariableLocalized>
+				<Description>Text auf dem Button für den Bestseller Filter</Description>
+			</Variable>
+
+			<Variable>
+				<Name>filter_special_price_btn</Name>
+				<VariableLocalized iso="GER">nur Angebote zeigen</VariableLocalized>
+				<VariableLocalized iso="ENG">show only offers</VariableLocalized>
+				<VariableLocalized iso="DUT">Toon alleen aanbiedingen</VariableLocalized>
+				<VariableLocalized iso="FRE">seulement les offres</VariableLocalized>
+				<VariableLocalized iso="ITA">mostra solo offerte</VariableLocalized>
+				<VariableLocalized iso="SWE">visa endast erbjudanden</VariableLocalized>
+				<VariableLocalized iso="RUS">только предложения</VariableLocalized>
+				<VariableLocalized iso="POL">pokaż tylko oferty</VariableLocalized>
+				<VariableLocalized iso="SPA">mostrar solo ofertas</VariableLocalized>
+				<Description>Text auf dem Button für den Sonderpreis filter</Description>
+			</Variable>
+			
+			<Variable>
+				<Name>bms_price_parent_from</Name>
+				<VariableLocalized iso="GER">ab</VariableLocalized>
+				<VariableLocalized iso="ENG">from</VariableLocalized>
+				<VariableLocalized iso="DUT">ab</VariableLocalized>
+				<VariableLocalized iso="FRE">partir de</VariableLocalized>
+				<VariableLocalized iso="ITA">da</VariableLocalized>
+				<VariableLocalized iso="SWE">från</VariableLocalized>
+				<VariableLocalized iso="RUS">от</VariableLocalized>
+				<VariableLocalized iso="POL">od</VariableLocalized>
+				<VariableLocalized iso="SPA">desde</VariableLocalized>
+				<Description>Text vor dem Preis, beri Variationen</Description>
+			</Variable>
+
+
+
+			<Variable>
+				<Name>bms_vgly_title_artnr</Name>
+				<VariableLocalized iso="GER">Artikelnummer: </VariableLocalized>
+				<VariableLocalized iso="ENG">id: </VariableLocalized>
+				<VariableLocalized iso="DUT">Artikelnummer: </VariableLocalized>
+				<VariableLocalized iso="FRE">Numéro d'article: </VariableLocalized>
+				<VariableLocalized iso="ITA">Codice articolo: </VariableLocalized>
+				<VariableLocalized iso="SWE">Artikelnummer: </VariableLocalized>
+				<VariableLocalized iso="RUS">код товара: </VariableLocalized>
+				<VariableLocalized iso="POL">numer artykułu: </VariableLocalized>
+				<VariableLocalized iso="SPA">número de artículo: </VariableLocalized>
+				<Description>Überschrift vor der Artikelnummer in der Galerieansicht</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vgly_title_manu</Name>
+				<VariableLocalized iso="GER">-</VariableLocalized>
+				<VariableLocalized iso="ENG">-</VariableLocalized>
+				<VariableLocalized iso="DUT">-</VariableLocalized>
+				<VariableLocalized iso="FRE">-</VariableLocalized>
+				<VariableLocalized iso="ITA">-</VariableLocalized>
+				<VariableLocalized iso="SWE">-</VariableLocalized>
+				<VariableLocalized iso="RUS">-</VariableLocalized>
+				<VariableLocalized iso="POL">-</VariableLocalized>
+				<VariableLocalized iso="SPA">-</VariableLocalized>
+				<Description>Überschrift vor dem Hersteller in der Galerieansicht</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vgly_title_han</Name>
+				<VariableLocalized iso="GER">HAN: </VariableLocalized>
+				<VariableLocalized iso="ENG">mpn: </VariableLocalized>
+				<VariableLocalized iso="DUT">mpn: </VariableLocalized>
+				<VariableLocalized iso="FRE">mpn: </VariableLocalized>
+				<VariableLocalized iso="ITA">mpn: </VariableLocalized>
+				<VariableLocalized iso="SWE">mpn: </VariableLocalized>
+				<VariableLocalized iso="RUS">mpn: </VariableLocalized>
+				<VariableLocalized iso="POL">mpn: </VariableLocalized>
+				<VariableLocalized iso="SPA">mpn: </VariableLocalized>
+				<Description>Überschrift vor der Herstellernummer in der Galerieansicht</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vgly_title_ean</Name>
+				<VariableLocalized iso="GER">EAN: </VariableLocalized>
+				<VariableLocalized iso="ENG">ean: </VariableLocalized>
+				<VariableLocalized iso="DUT">EAN: </VariableLocalized>
+				<VariableLocalized iso="FRE">EAN: </VariableLocalized>
+				<VariableLocalized iso="ITA">EAN: </VariableLocalized>
+				<VariableLocalized iso="SWE">EAN: </VariableLocalized>
+				<VariableLocalized iso="RUS">EAN:</VariableLocalized>
+				<VariableLocalized iso="POL">EAN: </VariableLocalized>
+				<VariableLocalized iso="SPA">EAN: </VariableLocalized>
+				<Description>Überschrift vor der EAN/Barcode in der Galerieansicht</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vgly_title_avail</Name>
+				<VariableLocalized iso="GER">-</VariableLocalized>
+				<VariableLocalized iso="ENG">-</VariableLocalized>
+				<VariableLocalized iso="DUT">-</VariableLocalized>
+				<VariableLocalized iso="FRE">-</VariableLocalized>
+				<VariableLocalized iso="ITA">-</VariableLocalized>
+				<VariableLocalized iso="SWE">-</VariableLocalized>
+				<VariableLocalized iso="RUS">-</VariableLocalized>
+				<VariableLocalized iso="POL">-</VariableLocalized>
+				<VariableLocalized iso="SPA">-</VariableLocalized>
+				<Description>Überschrift vor der Verfügbarkeit in der Galerieansicht</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vgly_title_price</Name>
+				<VariableLocalized iso="GER">-</VariableLocalized>
+				<VariableLocalized iso="ENG">-</VariableLocalized>
+				<VariableLocalized iso="DUT">-</VariableLocalized>
+				<VariableLocalized iso="FRE">-</VariableLocalized>
+				<VariableLocalized iso="ITA">-</VariableLocalized>
+				<VariableLocalized iso="SWE">-</VariableLocalized>
+				<VariableLocalized iso="RUS">-</VariableLocalized>
+				<VariableLocalized iso="POL">-</VariableLocalized>
+				<VariableLocalized iso="SPA">-</VariableLocalized>
+				<Description>Überschrift vor dem Preis in der Galerieansicht</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vgly_title_gotooffer</Name>
+				<VariableLocalized iso="GER">zum Angebot</VariableLocalized>
+				<VariableLocalized iso="ENG">goto offer</VariableLocalized>
+				<VariableLocalized iso="DUT">bij het aanbod</VariableLocalized>
+				<VariableLocalized iso="FRE">vers l'offre</VariableLocalized>
+				<VariableLocalized iso="ITA">vai all'offerta</VariableLocalized>
+				<VariableLocalized iso="SWE">gå till erbjudandet</VariableLocalized>
+				<VariableLocalized iso="RUS">к предложению</VariableLocalized>
+				<VariableLocalized iso="POL">do oferty</VariableLocalized>
+				<VariableLocalized iso="SPA">ver oferta</VariableLocalized>
+				<Description>Überschrift vor dem Preis in der Galerieansicht</Description>
+			</Variable>
+
+            <Variable>
+				<Name>bms_vgly_title_desc</Name>
+				<VariableLocalized iso="GER">-</VariableLocalized>
+				<VariableLocalized iso="ENG">-</VariableLocalized>
+				<VariableLocalized iso="DUT">-</VariableLocalized>
+				<VariableLocalized iso="FRE">-</VariableLocalized>
+				<VariableLocalized iso="ITA">-</VariableLocalized>
+				<VariableLocalized iso="SWE">-</VariableLocalized>
+				<VariableLocalized iso="RUS">-</VariableLocalized>
+				<VariableLocalized iso="POL">-</VariableLocalized>
+				<VariableLocalized iso="SPA">-</VariableLocalized>
+				<Description>Titel vor der Beschreibung in der Galerie</Description>
+			</Variable>
+			
+            <Variable>
+				<Name>bms_vlis_title_price</Name>
+				<VariableLocalized iso="GER">Preis:</VariableLocalized>
+				<VariableLocalized iso="ENG">price:</VariableLocalized>
+				<VariableLocalized iso="DUT">Prijs:</VariableLocalized>
+				<VariableLocalized iso="FRE">Prix:</VariableLocalized>
+				<VariableLocalized iso="ITA">Prezzo: </VariableLocalized>
+				<VariableLocalized iso="SWE">Pris: </VariableLocalized>
+				<VariableLocalized iso="RUS">Цена: </VariableLocalized>
+				<VariableLocalized iso="POL">cena: </VariableLocalized>
+				<VariableLocalized iso="SPA">precio: </VariableLocalized>
+				<Description>Titel vor dem Preis in der Galerie</Description>
+			</Variable>
+
+			<Variable>
+				<Name>bms_vtbl_title_details</Name>
+				<VariableLocalized iso="GER">#</VariableLocalized>
+				<VariableLocalized iso="ENG">#</VariableLocalized>
+				<VariableLocalized iso="DUT">#</VariableLocalized>
+				<VariableLocalized iso="FRE">#</VariableLocalized>
+				<VariableLocalized iso="ITA">#</VariableLocalized>
+				<VariableLocalized iso="SWE">#</VariableLocalized>
+				<VariableLocalized iso="RUS">#</VariableLocalized>
+				<VariableLocalized iso="POL">#</VariableLocalized>
+				<VariableLocalized iso="SPA">#</VariableLocalized>
+				<Description>Überschrift über der Spalte um die Details der Tabellenansicht aufzuklappen</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vtbl_title_artnr</Name>
+				<VariableLocalized iso="GER">Artnr</VariableLocalized>
+				<VariableLocalized iso="ENG">id</VariableLocalized>
+				<VariableLocalized iso="DUT">Artnr</VariableLocalized>
+				<VariableLocalized iso="FRE">Numéro d'article</VariableLocalized>
+				<VariableLocalized iso="ITA">Numero articolo</VariableLocalized>
+				<VariableLocalized iso="SWE">Artikelnummer</VariableLocalized>
+				<VariableLocalized iso="RUS">Артикул</VariableLocalized>
+				<VariableLocalized iso="POL">numer artykułu</VariableLocalized>
+				<VariableLocalized iso="SPA">número de artículo</VariableLocalized>
+				<Description>Überschrift über der Spalte Artikelnummer der Tabellenansicht</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vtbl_title_title</Name>
+				<VariableLocalized iso="GER">Bezeichnung</VariableLocalized>
+				<VariableLocalized iso="ENG">title</VariableLocalized>
+				<VariableLocalized iso="DUT">Aanwijzing</VariableLocalized>
+				<VariableLocalized iso="FRE">Nom</VariableLocalized>
+				<VariableLocalized iso="ITA">Titolo</VariableLocalized>
+				<VariableLocalized iso="SWE">Titel</VariableLocalized>
+				<VariableLocalized iso="RUS">Наименование</VariableLocalized>
+				<VariableLocalized iso="POL">tytuł</VariableLocalized>
+				<VariableLocalized iso="SPA">título</VariableLocalized>
+				<Description>Überschrift über der Spalte Titel der Tabellenansicht</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vtbl_title_han</Name>
+				<VariableLocalized iso="GER">HAN</VariableLocalized>
+				<VariableLocalized iso="ENG">mpn</VariableLocalized>
+				<VariableLocalized iso="DUT">mpn</VariableLocalized>
+				<VariableLocalized iso="FRE">mpn</VariableLocalized>
+				<VariableLocalized iso="ITA">MPN</VariableLocalized>
+				<VariableLocalized iso="SWE">mpn</VariableLocalized>
+				<VariableLocalized iso="RUS">HAN</VariableLocalized>
+				<VariableLocalized iso="POL">mpn</VariableLocalized>
+				<VariableLocalized iso="SPA">mpn</VariableLocalized>
+				<Description>Überschrift über der Spalte Herstellernummer der Tabellenansicht</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vtbl_title_avail</Name>
+				<VariableLocalized iso="GER">Verf</VariableLocalized>
+				<VariableLocalized iso="ENG">avail</VariableLocalized>
+				<VariableLocalized iso="DUT">Verf</VariableLocalized>
+				<VariableLocalized iso="FRE">avail</VariableLocalized>
+				<VariableLocalized iso="ITA">Dispon</VariableLocalized>
+				<VariableLocalized iso="SWE">Tillgänglighet</VariableLocalized>
+				<VariableLocalized iso="RUS">Дост</VariableLocalized>
+				<VariableLocalized iso="POL">dostępność</VariableLocalized>
+				<VariableLocalized iso="SPA">disponibilidad</VariableLocalized>
+				<Description>Überschrift über der Spalte Verfügbarkeit der Tabellenansicht</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vtbl_title_price</Name>
+				<VariableLocalized iso="GER">Preis</VariableLocalized>
+				<VariableLocalized iso="ENG">price</VariableLocalized>
+				<VariableLocalized iso="DUT">Prijs</VariableLocalized>
+				<VariableLocalized iso="FRE">Prix</VariableLocalized>
+				<VariableLocalized iso="ITA">Prezzo</VariableLocalized>
+				<VariableLocalized iso="SWE">Pris</VariableLocalized>
+				<VariableLocalized iso="RUS">Цена</VariableLocalized>
+				<VariableLocalized iso="POL">cena</VariableLocalized>
+				<VariableLocalized iso="SPA">precio</VariableLocalized>
+				<Description>Überschrift über der Spalte Preis der Tabellenansicht</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vtbl_title_manu</Name>
+				<VariableLocalized iso="GER">Hersteller</VariableLocalized>
+				<VariableLocalized iso="ENG">manufacturer</VariableLocalized>
+				<VariableLocalized iso="DUT">Fabrikant</VariableLocalized>
+				<VariableLocalized iso="FRE">Fabricant</VariableLocalized>
+				<VariableLocalized iso="ITA">Produttore</VariableLocalized>
+				<VariableLocalized iso="SWE">Tillverkare</VariableLocalized>
+				<VariableLocalized iso="RUS">Производитель</VariableLocalized>
+				<VariableLocalized iso="POL">producent</VariableLocalized>
+				<VariableLocalized iso="SPA">fabricante</VariableLocalized>
+				<Description>Überschrift über der Spalte Hersteller der Tabellenansicht</Description>
+			</Variable>
+			<Variable>
+				<Name>bms_vlis_title_manufacturer</Name>
+				<VariableLocalized iso="GER">Hersteller</VariableLocalized>
+				<VariableLocalized iso="ENG">manufacturer</VariableLocalized>
+				<VariableLocalized iso="DUT">Fabrikant</VariableLocalized>
+				<VariableLocalized iso="FRE">Fabricant</VariableLocalized>
+				<VariableLocalized iso="ITA">Produttore</VariableLocalized>
+				<VariableLocalized iso="SWE">Tillverkare</VariableLocalized>
+				<VariableLocalized iso="RUS">Производитель</VariableLocalized>
+				<VariableLocalized iso="POL">producent</VariableLocalized>
+				<VariableLocalized iso="SPA">fabricante</VariableLocalized>
+				<Description>Hersteller in der Artikelliste</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vlis_title_artnr</Name>
+				<VariableLocalized iso="GER">Artnr: </VariableLocalized>
+				<VariableLocalized iso="ENG">artnr: </VariableLocalized>
+				<VariableLocalized iso="DUT">Artnr: </VariableLocalized>
+				<VariableLocalized iso="FRE">Artnr: </VariableLocalized>
+				<VariableLocalized iso="ITA">Artnr: </VariableLocalized>
+				<VariableLocalized iso="SWE">Artnr: </VariableLocalized>
+				<VariableLocalized iso="RUS">Артикул: </VariableLocalized>
+				<VariableLocalized iso="POL">nr art.: </VariableLocalized>
+				<VariableLocalized iso="SPA">nº art.: </VariableLocalized>
+				<Description>Titel vor der Artikelnummer in der Artikelliste</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vlis_title_han</Name>
+				<VariableLocalized iso="GER">HAN: </VariableLocalized>
+				<VariableLocalized iso="ENG">HAN: </VariableLocalized>
+				<VariableLocalized iso="DUT">HAN: </VariableLocalized>
+				<VariableLocalized iso="FRE">HAN: </VariableLocalized>
+				<VariableLocalized iso="ITA">MPN: </VariableLocalized>
+				<VariableLocalized iso="SWE">MPN: </VariableLocalized>
+				<VariableLocalized iso="RUS">Номер изделия: </VariableLocalized>
+				<VariableLocalized iso="POL">HAN: </VariableLocalized>
+				<VariableLocalized iso="SPA">MPN: </VariableLocalized>
+				<Description>Titel vor der Herstellernummer in der Artikelliste</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vlis_title_ean</Name>
+				<VariableLocalized iso="GER">EAN: </VariableLocalized>
+				<VariableLocalized iso="ENG">EAN: </VariableLocalized>
+				<VariableLocalized iso="DUT">EAN: </VariableLocalized>
+				<VariableLocalized iso="FRE">EAN: </VariableLocalized>
+				<VariableLocalized iso="ITA">EAN: </VariableLocalized>
+				<VariableLocalized iso="SWE">EAN: </VariableLocalized>
+				<VariableLocalized iso="RUS">ЕАН: </VariableLocalized>
+				<VariableLocalized iso="POL">EAN: </VariableLocalized>
+				<VariableLocalized iso="SPA">EAN: </VariableLocalized>
+				<Description>Titel vor der EAN in der Artikelliste</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vlis_title_desc</Name>
+				<VariableLocalized iso="GER">Beschreibung:</VariableLocalized>
+				<VariableLocalized iso="ENG">description:</VariableLocalized>
+				<VariableLocalized iso="DUT">Beschrijving van de:</VariableLocalized>
+				<VariableLocalized iso="FRE">Description:</VariableLocalized>
+				<VariableLocalized iso="ITA">Descrizione: </VariableLocalized>
+				<VariableLocalized iso="SWE">Beskrivning: </VariableLocalized>
+				<VariableLocalized iso="RUS">Описание: </VariableLocalized>
+				<VariableLocalized iso="POL">opis: </VariableLocalized>
+				<VariableLocalized iso="SPA">descripción: </VariableLocalized>
+				<Description>Titel vor der Beschreibung in der Artikelliste</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vlis_title_price</Name>
+				<VariableLocalized iso="GER">Preis:</VariableLocalized>
+				<VariableLocalized iso="ENG">price:</VariableLocalized>
+				<VariableLocalized iso="DUT">Prijs:</VariableLocalized>
+				<VariableLocalized iso="FRE">Prix:</VariableLocalized>
+				<VariableLocalized iso="ITA">Prezzo: </VariableLocalized>
+				<VariableLocalized iso="SWE">Pris: </VariableLocalized>
+				<VariableLocalized iso="RUS">Цена: </VariableLocalized>
+				<VariableLocalized iso="POL">cena: </VariableLocalized>
+				<VariableLocalized iso="SPA">precio: </VariableLocalized>
+				<Description>Titel vor dem Preis in der Artikelliste</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vlis_title_gotooffer</Name>
+				<VariableLocalized iso="GER">zum Angebot</VariableLocalized>
+				<VariableLocalized iso="ENG">goto offer</VariableLocalized>
+				<VariableLocalized iso="DUT">bij het aanbod</VariableLocalized>
+				<VariableLocalized iso="FRE">vers l'offre</VariableLocalized>
+				<VariableLocalized iso="ITA">vai all'offerta</VariableLocalized>
+				<VariableLocalized iso="SWE">gå till erbjudandet</VariableLocalized>
+				<VariableLocalized iso="RUS">к предложению</VariableLocalized>
+				<VariableLocalized iso="POL">do oferty</VariableLocalized>
+				<VariableLocalized iso="SPA">ver oferta</VariableLocalized>
+				<Description>Titel im Button zum Angebot</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vlis_badge_price</Name>
+				<VariableLocalized iso="GER">Sonderpreis</VariableLocalized>
+				<VariableLocalized iso="ENG">special price</VariableLocalized>
+				<VariableLocalized iso="DUT">Speciale prijs</VariableLocalized>
+				<VariableLocalized iso="FRE">Prix spécial</VariableLocalized>
+				<VariableLocalized iso="ITA">Prezzo speciale</VariableLocalized>
+				<VariableLocalized iso="SWE">Specialpris</VariableLocalized>
+				<VariableLocalized iso="RUS">Специальная цена</VariableLocalized>
+				<VariableLocalized iso="POL">specjalna cena</VariableLocalized>
+				<VariableLocalized iso="SPA">precio especial</VariableLocalized>
+				<Description>Badge in der Artikelliste, wenn Sonderpreis</Description>
+			</Variable>
+            <Variable>
+				<Name>bms_vlis_badge_topartikel</Name>
+				<VariableLocalized iso="GER">Topartikel</VariableLocalized>
+				<VariableLocalized iso="ENG">toparticle</VariableLocalized>
+				<VariableLocalized iso="DUT">Top artikelen</VariableLocalized>
+				<VariableLocalized iso="FRE">Top articles</VariableLocalized>
+				<VariableLocalized iso="ITA">Articolo top</VariableLocalized>
+				<VariableLocalized iso="SWE">Toppartikel</VariableLocalized>
+				<VariableLocalized iso="RUS">Топ-артикул</VariableLocalized>
+				<VariableLocalized iso="POL">najlepszy artykuł</VariableLocalized>
+				<VariableLocalized iso="SPA">artículo top</VariableLocalized>
+				<Description>Badge in der Artikelliste, wenn Topartikel</Description>
+			</Variable>
+
+			<Variable>
+				<Name>bms_vlis_badge_bestseller</Name>
+				<VariableLocalized iso="GER">Bestseller</VariableLocalized>
+				<VariableLocalized iso="ENG">bestseller</VariableLocalized>
+				<VariableLocalized iso="DUT">Bestseller</VariableLocalized>
+				<VariableLocalized iso="FRE">Meilleures ventes</VariableLocalized>
+				<VariableLocalized iso="ITA">Bestseller</VariableLocalized>
+				<VariableLocalized iso="SWE">Bästsäljare</VariableLocalized>
+				<VariableLocalized iso="RUS">Бестселлер</VariableLocalized>
+				<VariableLocalized iso="POL">bestseller</VariableLocalized>
+				<VariableLocalized iso="SPA">más vendido</VariableLocalized>
+				<Description>Badge in der Artikelliste, wenn Bestseller</Description>
+			</Variable>
+
+			<Variable>
+				<Name>bms_vlis_badge_stock</Name>
+				<VariableLocalized iso="GER">lagernd</VariableLocalized>
+				<VariableLocalized iso="ENG">in stock</VariableLocalized>
+				<VariableLocalized iso="DUT">op voorraad</VariableLocalized>
+				<VariableLocalized iso="FRE">en stock</VariableLocalized>
+				<VariableLocalized iso="ITA">in magazzino</VariableLocalized>
+				<VariableLocalized iso="SWE">i lager</VariableLocalized>
+				<VariableLocalized iso="RUS">в наличии</VariableLocalized>
+				<VariableLocalized iso="POL">dostępny</VariableLocalized>
+				<VariableLocalized iso="SPA">en stock</VariableLocalized>
+				<Description>Badge in der Artikelliste, wenn lagernd</Description>
+			</Variable>
+
+			<Variable>
+				<Name>bms_loadMore</Name>
+				<VariableLocalized iso="GER">weitere Treffer laden</VariableLocalized>
+				<VariableLocalized iso="ENG">load more</VariableLocalized>
+				<VariableLocalized iso="DUT">meer hits laden</VariableLocalized>
+				<VariableLocalized iso="FRE">plus de résultats</VariableLocalized>
+				<VariableLocalized iso="ITA">carica altri</VariableLocalized>
+				<VariableLocalized iso="SWE">ladda mer</VariableLocalized>
+				<VariableLocalized iso="RUS">загрузить еще</VariableLocalized>
+				<VariableLocalized iso="POL">załaduj więcej</VariableLocalized>
+				<VariableLocalized iso="SPA">cargar más</VariableLocalized>
+				<Description>Button um mehr Angebote zu laden</Description>
+			</Variable>
+
+			<Variable>
+				<Name>bms_textNoHits</Name>
+				<VariableLocalized iso="GER"><![CDATA[<b>keine Treffer</b> bei der Suche nach &quot;<span class="bms_currentSearch"></span>&quot;]]></VariableLocalized>
+				<VariableLocalized iso="ENG"><![CDATA[<b>No hits</b> for the search &quot;<span class="bms_currentSearch"></span>&quot;]]></VariableLocalized>
+				<VariableLocalized iso="DUT"><![CDATA[<b>geen resultaten</b> bij de zoekopdracht &quot;<span class="bms_currentSearch"></span>&quot;]]></VariableLocalized>
+				<VariableLocalized iso="FRE"><![CDATA[<b>aucun résultat</b> pour la recherche &quot;<span class="bms_currentSearch"></span>&quot;]]></VariableLocalized>
+				<VariableLocalized iso="ITA"><![CDATA[<b>nessun risultato</b> per la ricerca &quot;<span class="bms_currentSearch"></span>&quot;]]></VariableLocalized>
+				<VariableLocalized iso="SWE"><![CDATA[<b>inga träffar</b> för sökningen &quot;<span class="bms_currentSearch"></span>&quot;]]></VariableLocalized>
+				<VariableLocalized iso="RUS"><![CDATA[<b>нет результатов</b> по запросу &quot;<span class="bms_currentSearch"></span>&quot;]]></VariableLocalized>
+				<VariableLocalized iso="POL"><![CDATA[<b>brak wyników</b> dla wyszukiwania &quot;<span class="bms_currentSearch"></span>&quot;]]></VariableLocalized>
+				<VariableLocalized iso="SPA"><![CDATA[<b>no hay resultados</b> para la búsqueda &quot;<span class="bms_currentSearch"></span>&quot;]]></VariableLocalized>
+				<Description>Text wenn keine Treffer</Description>
+                <Type>textarea</Type>
+			</Variable>
+
+			<Variable>
+				<Name>bms_textNoExactHits</Name>
+				<VariableLocalized iso="GER"><![CDATA[<b>keine Treffer</b>, aber Treffer bei der <b>fehlertoleranten Suche</b> nach &quot;<span class="bms_currentSearch"></span>&quot;]]></VariableLocalized>
+				<VariableLocalized iso="ENG"><![CDATA[<b>No hits</b>, but hits for the <b>tolerant search</b> for &quot;<span class="bms_currentSearch"></span>&quot;]]></VariableLocalized>
+				<VariableLocalized iso="DUT"><![CDATA[<b>geen resultaten</b>, maar resultaten bij de <b>fouttolerante zoekopdracht</b> voor &quot;<span class="bms_currentSearch"></span>&quot;]]></VariableLocalized>
+				<VariableLocalized iso="FRE"><![CDATA[<b>aucun résultat</b>, mais des résultats pour la <b>recherche tolérante aux erreurs</b> de &quot;<span class="bms_currentSearch"></span>&quot;]]></VariableLocalized>
+				<VariableLocalized iso="ITA"><![CDATA[<b>nessun risultato</b>, ma risultati per la <b>ricerca tollerante agli errori</b> di &quot;<span class="bms_currentSearch"></span>&quot;]]></VariableLocalized>
+				<VariableLocalized iso="SWE"><![CDATA[<b>inga träffar</b>, men träffar för den <b>felförlåtande sökningen</b> på &quot;<span class="bms_currentSearch"></span>&quot;]]></VariableLocalized>
+				<VariableLocalized iso="RUS"><![CDATA[<b>нет результатов</b>, но есть результаты по <b>поиску с учетом ошибок</b> по запросу &quot;<span class="bms_currentSearch"></span>&quot;]]></VariableLocalized>
+				<VariableLocalized iso="POL"><![CDATA[<b>brak wyników</b>, ale są wyniki dla <b>wyszukiwania tolerującego błędy</b> dla &quot;<span class="bms_currentSearch"></span>&quot;]]></VariableLocalized>
+				<VariableLocalized iso="SPA"><![CDATA[<b>no hay resultados</b>, pero hay resultados para la <b>búsqueda tolerante a errores</b> de &quot;<span class="bms_currentSearch"></span>&quot;]]></VariableLocalized>
+				<Description>Text wenn keine Treffer in der exakten Suche</Description>
+                <Type>textarea</Type>
+			</Variable>
+			<Variable>
+				<Name>bms_textNoServerResponse</Name>
+				<VariableLocalized iso="GER"><![CDATA[Leider hat der Suchserver nicht rechtzeitig geantwortet. Bitte versuchen Sie es später noch einmal. Danke]]></VariableLocalized>
+				<VariableLocalized iso="ENG"><![CDATA[Unfortunately, the search server did not respond in time. Please try again later. Thank you.]]></VariableLocalized>
+				<VariableLocalized iso="DUT"><![CDATA[Helaas heeft de zoekserver niet op tijd gereageerd. Probeer het later opnieuw. Dank u.]]></VariableLocalized>
+				<VariableLocalized iso="FRE"><![CDATA[Malheureusement, le serveur de recherche n'a pas répondu à temps. Veuillez réessayer plus tard. Merci.]]></VariableLocalized>
+				<VariableLocalized iso="ITA"><![CDATA[Sfortunatamente, il server di ricerca non ha risposto in tempo. Per favore riprova più tardi. Grazie.]]></VariableLocalized>
+				<VariableLocalized iso="SWE"><![CDATA[Tyvärr svarade inte sökservern i tid. Försök igen senare. Tack.]]></VariableLocalized>
+				<VariableLocalized iso="RUS"><![CDATA[К сожалению, сервер поиска не ответил вовремя. Пожалуйста, повторите попытку позже. Спасибо.]]></VariableLocalized>
+				<VariableLocalized iso="POL"><![CDATA[Niestety, serwer wyszukiwania nie odpowiedział na czas. Spróbuj ponownie później. Dziękujemy.]]></VariableLocalized>
+				<VariableLocalized iso="SPA"><![CDATA[Lamentablemente, el servidor de búsqueda no respondió a tiempo. Por favor, inténtelo de nuevo más tarde. Gracias.]]></VariableLocalized>
+				<Description>Text wenn der Suchserver nicht rechtzeitig antwortet</Description>
+				<Type>textarea</Type>
+			</Variable>
+		</Locales>
+
+
+        <CSS>
+			<file>
+				<name>bms_1339.css</name>
+				<priority>5</priority>
+			</file>
+		</CSS>
+		<JS>
+			<file>
+				<name>bms_1339.js</name>
+				<priority>0</priority>
+				<position>head</position>
+			</file>
+		</JS>
+    </Install>
+</jtlshopplugin>
